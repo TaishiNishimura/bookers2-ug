@@ -1,16 +1,20 @@
 class FavoritesController < ApplicationController
 
-	def create
-	  book = Book.find(params[:book_id])
-	  @book = Book.all
-    favorite = current_user.favorites.new(book_id: book.id)
-    favorite.save
+  before_action :set_book
+
+  def create
+    @favorite = Favorite.new(user_id: current_user.id, book_id: @book.id)
+    @favorite.save
   end
 
   def destroy
-  	book = Book.find(params[:book_id])
-    favorite = current_user.favorites.find_by(book_id: book.id)
-    favorite.destroy
+    @favorite = Favorite.find_by(user_id: current_user.id, book_id:  @book.id)
+    @favorite.destroy
   end
 
+  private
+
+  def set_book
+    @book = Book.find_by(id: params[:book_id])
+  end
 end
