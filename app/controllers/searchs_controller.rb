@@ -4,6 +4,7 @@ class SearchsController < ApplicationController
     @content = params["content"]
     @method = params["method"]
     @records = search_for(@model, @content, @method)
+    # binding.pry
   end
 
   private
@@ -11,21 +12,21 @@ class SearchsController < ApplicationController
     if model == 'user'
       if method == 'perfect'
         User.where(name: content)
-      elsif
+      elsif method == 'forward'
         User.where('name LIKE ?', '%'+content+'%')
-      elsif
+      elsif method == 'backward'
       	User.where('name LIKE ?', content+'%')
-      elsif
+      elsif method == 'partial'
       	User.where('name LIKE ?', '%'+content)
       end
     elsif model == 'book'
       if method == 'perfect'
         Book.where(title: content)
-      elsif
+      elsif method == 'forward'
         Book.where('title LIKE ?', '%'+content+'%')
-      elsif
+      elsif method == 'backward'
       	Book.where('title LIKE ?', content+'%')
-      elsif
+      elsif method == 'partial'
       	Book.where('title LIKE ?', '%'+content)
       end
     end
