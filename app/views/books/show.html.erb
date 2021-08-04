@@ -36,7 +36,7 @@
           <%= render 'book_comments/comments', book: @book %>
         </div>
 　　　  <div class="new-comment">
-          <%= form_with(model:[@book, @book_comment], remort: true) do |f| %>
+          <%= form_with(model:[@book, @book_comment], class: 'js-comment-form', remort: true) do |f| %>
           <%= f.text_area :comment, rows:'5', cols:'80', placeholder: "コメントをここに" %>
           <div class="button">
             <%= f.submit "送信" %>
