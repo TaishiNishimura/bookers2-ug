@@ -4,7 +4,6 @@ class SearchsController < ApplicationController
     @content = params["content"]
     @method = params["method"]
     @records = search_for(@model, @content, @method)
-    # binding.pry
   end
 
   private

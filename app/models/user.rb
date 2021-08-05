@@ -25,6 +25,9 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
+  
+  has_many :messages, dependent: :destroy
+  has_many :entries, dependent: :destroy
 
   validates :name, length: {maximum: 20, minimum: 2}, uniqueness: true
   validates :introduction, length: {maximum: 50}

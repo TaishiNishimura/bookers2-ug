@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'messages/create'
+  get 'rooms/create'
+  get 'rooms/show'
   devise_for :users
   root 'homes#top'
   get 'home/about' => 'homes#about'
@@ -9,6 +12,9 @@ Rails.application.routes.draw do
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
   end
+  
+  resources :messages, only: [:create]
+  resources :rooms, only: [:create,:show]
 
   resources :books do
     resource :favorites, only: [:create, :destroy]
