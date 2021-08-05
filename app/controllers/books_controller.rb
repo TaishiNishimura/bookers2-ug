@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  impressionist :actions=> [:show]
+  impressionist actions: [:show]
 
   def show
     @book = Book.find(params[:id])
