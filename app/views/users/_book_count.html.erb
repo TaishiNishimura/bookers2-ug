@@ -104,3 +104,24 @@
      }
 });
 </script>
+
+<div class=search-form style="margin-top: 40px;" >
+  <%= form_tag(search_path, method: :get) do %>
+    <%= date_field_tag 'content' %>
+    <%= submit_tag '検索' %>
+  <% end %>
+</div>
+<h4>検索結果</h4>
+ <div class="table_width">
+   <table class="table table-bordered border-primary">
+    <thead>
+      <tr class="table-info">
+       <th>投稿数</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+       <td><%= @today_book.count %></td>
+      </tr>
+    </tbody>
+   </table>
