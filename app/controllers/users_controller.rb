@@ -21,9 +21,14 @@ class UsersController < ApplicationController
       end
     end
     @book = Book.new
-    @books = @user.books.reverse_order
+    @books = @user.books
     @today_book =  @books.created_today
     @yesterday_book = @books.created_yesterday
+    @ago_2days_book = @books.created_ago_2days
+    @ago_3days_book = @books.created_ago_3days
+    @ago_4days_book = @books.created_ago_4days
+    @ago_5days_book = @books.created_ago_5days
+    @ago_6days_book = @books.created_ago_6days
     @this_week_book = @books.created_this_week
     @last_week_book = @books.created_last_week
   end

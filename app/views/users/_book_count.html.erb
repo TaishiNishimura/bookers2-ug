@@ -1,3 +1,4 @@
+ <div class="table_width">
  <table class="table table-bordered border-primary">
   <thead>
     <tr class="table-info">
@@ -21,6 +22,8 @@
      </tr>
    </tbody>
  </table>
+ </div>
+  <div class="table_width">
  <table class="table table-bordered border-primary">
    <thead>
      <tr class="table-info">
@@ -44,3 +47,60 @@
      </tr>
    </tbody>
  </table>
+ </div>
+ <h4>７日分の投稿数</h4>
+ <div class="table_width">
+   <table class="table table-bordered">
+    <thead>
+      <tr class="table-info">
+       <th>６日前</th>
+       <th>５日前</th>
+       <th>４日前</th>
+       <th>３日前</th>
+       <th>２日前</th>
+       <th>１日前</th>
+       <th>今日</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table">
+       <td><%= @ago_6days_book.count %></td>
+       <td><%= @ago_5days_book.count %></td>
+       <td><%= @ago_4days_book.count %></td>
+       <td><%= @ago_3days_book.count %></td>
+       <td><%= @ago_2days_book.count %></td>
+       <td><%= @yesterday_book.count %></td>
+       <td><%= @today_book.count %></td>
+       </tr>
+     </tbody>
+   </table>
+ </div>
+ <canvas id="myChart"></canvas>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
+ <script>
+ var ctx = document.getElementById('myChart').getContext('2d');
+ var chart = new Chart(ctx, {
+     type: 'line',
+     data: {
+         labels: ['６日前', '５日前', '４日前', '３日前', '２日前', '１日前', '今日'],
+         datasets: [{
+             label: '投稿した本の数',
+             borderColor: 'rgb(75, 192, 192)',
+             fill: false,
+             data: [<%= @ago_6days_book.count %>,
+             　　　　　　<%= @ago_5days_book.count %>,
+             　　　　　　<%= @ago_4days_book.count %>,
+             　　　　　　<%= @ago_3days_book.count %>,
+             　　　　　　<%= @ago_2days_book.count %>,
+             　　　　　　<%= @yesterday_book.count %>,
+             　　　　　　<%= @today_book.count %>]
+         }]
+     },
+     options: {
+       title: {
+         display: true,
+         text: '７日間の投稿数の比較'
+       }
+     }
+});
+</script>
